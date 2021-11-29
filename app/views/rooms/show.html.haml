@@ -1,0 +1,52 @@
+.page-header
+  = link_to rooms_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_room_path(@room), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1
+    =@room.name
+
+
+%dl.dl-horizontal
+  %dt Door contact:
+  %dd= @room.door_contact_id
+  %dt Speaker:
+  %dd= @room.speaker_id
+  %dt Cooldown period:
+  %dd #{@room.cooldown_seconds} seconds
+  %dt Quiet Hours:
+  %dd #{@room.quiet_hours}
+
+%h3 Lights
+%ul
+  -@room.lights.each do |light|
+    %ul
+      = link_to light.name , light
+      =render 'lights/color_picker', light: light
+
+%h3 Messages
+%ul
+  -@room.door_messages.each do |dm|
+    %ul= link_to dm.message , dm
+
+%h4 Enter something to say...
+=form_tag(say_room_path(@room)) do
+  =text_area :say, :message, cols: 80, rows: 3, value: @message
+  =submit_tag "Say it!"
+
+%h4 Say Something Services
+%ul
+-JokeGenerator.types.each do |t|
+  %li
+    -value = @room.say_services.index(t)
+    %input{type: 'checkbox', name: "t", checked: value, onclick: "toggle_service(this, '#{t}');"}
+    =link_to t, tell_joke_room_path(@room, joke_type: t)
+
+:javascript
+  function toggle_service(cb, service_name) {
+    var url = "#{toggle_say_service_room_path(@room)}?enabled=" + cb.checked + "&service_name=" + service_name;
+    // alert(url)
+    $.ajax(url)
+  }

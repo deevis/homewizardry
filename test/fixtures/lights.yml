@@ -1,0 +1,19 @@
+# == Schema Information
+#
+# Table name: lights
+#
+#  id         :bigint           not null, primary key
+#  entity_id  :string(255)
+#  name       :string(255)
+#  room_id    :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  entity_id: MyString
+  name: MyString
+
+two:
+  entity_id: MyString
+  name: MyString

@@ -1,0 +1,20 @@
+
+.page-header
+  = link_to lights_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_light_path(@light), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1
+    =@light.name
+    %small
+      =link_to @light.room.name, @light.room
+
+%dl.dl-horizontal
+  %dt Entity:
+  %dd= @light.entity_id
+
+=render 'lights/color_picker', light: @light
+
+

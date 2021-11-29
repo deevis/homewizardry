@@ -1,0 +1,38 @@
+.page-header
+  = link_to new_room_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Room
+  %h1 Listing rooms
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover.table-condensed
+    %thead
+      %tr
+        %th=sort_link(@q, :name)
+        %th=sort_link(@q, :quiet_hours)
+        %th=sort_link(@q, :cooldown_seconds)
+        %th=sort_link(@q, :door_contact_id)
+        %th=sort_link(@q, :speaker_id)
+        %th Messages
+        %th Lights
+        %th
+        %th
+
+    %tbody
+      - @rooms.each do |room|
+        %tr
+          %td= link_to room.name, room
+          %td= room.quiet_hours
+          %td= room.cooldown_seconds
+          %td= room.door_contact_id
+          %td= room.speaker_id
+          %td
+            %ul
+              -room.door_messages.each do |m|
+                %li=link_to m.message, m
+          %td
+            %ul
+              -room.lights.each do |l|
+                %li=link_to l.name, l
+          %td= link_to 'Edit', edit_room_path(room)
+          %td= link_to 'Destroy', room, data: { confirm: 'Are you sure?' }, method: :delete

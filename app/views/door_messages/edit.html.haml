@@ -1,0 +1,10 @@
+.page-header
+  = link_to door_messages_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to @door_message, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-info-sign
+    Show
+  %h1 Editing door_message
+
+= render 'form'

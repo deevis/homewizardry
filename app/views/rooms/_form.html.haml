@@ -1,0 +1,35 @@
+= form_for @room, html: { class: "form-horizontal", role: "form" } do |f|
+  -if @room.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@room.errors.count, "error")} prohibited this room from being saved:"
+
+      %ul
+        - @room.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :name, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :cooldown_seconds, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :cooldown_seconds, class: 'form-control'
+  .form-group
+    = f.label :quiet_hours, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :quiet_hours, placeholder: "ex: 10pm-8am", class: 'form-control'
+  .form-group
+    = f.label :door_contact_id, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :door_contact_id, class: 'form-control'
+  .form-group
+    = f.label :speaker_id, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :speaker_id, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'

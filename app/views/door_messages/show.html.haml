@@ -1,0 +1,17 @@
+.page-header
+  = link_to door_messages_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_door_message_path(@door_message), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1
+    Show Door Message
+    %small
+      =link_to @door_message.room.name ,@door_message.room
+
+%dl.dl-horizontal
+  %dt Message:
+  %dd= @door_message.message
+
+

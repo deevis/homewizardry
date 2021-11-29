@@ -1,0 +1,8 @@
+-['#ff0000', '#00ff00', '#0000ff', '#ff00ff', '#ffff00', '#00ffff'].each do |rgb|
+  =link_to "javascript: setColor('#rgb_form_#{light.id}', '#{rgb}');" do
+    .color-patch{style: "background-color: #{rgb}"}
+%div{style: "display: inline-block;"}
+  =form_tag(set_color_light_path(light), method: 'post', id: "rgb_form_#{light.id}", remote: true) do
+    =color_field :color, :rgb
+    =submit_tag "Set"
+

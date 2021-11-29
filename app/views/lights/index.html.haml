@@ -1,0 +1,47 @@
+.page-header
+  = link_to new_light_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Light
+  %h1 Listing Lights
+
+%h3 Configured Lights
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Room
+        %th Entity
+        %th Name
+        %th
+        %th
+
+    %tbody
+      - @lights.each do |light|
+        %tr
+          %td= link_to light.room&.name, light.room
+          %td= link_to light.entity_id, light
+          %td= light.name
+          %td= render 'lights/color_picker', light: light
+          %td= link_to 'Destroy', light, data: { confirm: 'Are you sure?' }, method: :delete
+
+%h3 Unconfigured Lights
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Entity
+        %th Friendly Name
+        %th 
+
+    %tbody
+      - @rgb_lights.each do |l|
+        -next if Light.find_by(entity_id: l['entity_id']).present?
+        %tr
+          %td= l['entity_id']
+          %td= l['attributes']['friendly_name']
+          %td
+            =form_for(:light) do |f|
+              =f.hidden_field :entity_id, value: l['entity_id']
+              =f.hidden_field :name, value: l['attributes']['friendly_name']
+              =f.collection_select :room_id, Room.all, :id, :name
+              =f.submit "Quick Add"
