@@ -21,7 +21,7 @@ class Room < ApplicationRecord
 
   default_scope ->{order("name ASC")}
 
-  validates_format_of :quiet_hours, with: /\d\d?[ap]m-\d\d?[ap]m/, allows_nil: true, allows_blank: true
+  validates_format_of :quiet_hours, with: /\d\d?[ap]m-\d\d?[ap]m/, allows_nil: true, allows_blank: true, if: ->(t){t.quiet_hours.present?}
 
 
   def say(message=nil)
@@ -34,10 +34,9 @@ class Room < ApplicationRecord
   def get_message
     # was originally: room.door_messages.sample.message
     options = say_services.clone
-    options << :door_messages if door_messages.present?
     chosen = options.sample
     case(chosen)
-    when :door_messages
+    when 'messages'
       door_messages.sample.message
     else
        JokeGenerator.tell_joke(chosen)

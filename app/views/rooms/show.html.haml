@@ -26,7 +26,11 @@
       = link_to light.name , light
       =render 'lights/color_picker', light: light
 
-%h3 Messages
+%h3 
+  Messages
+  %small
+    -value = @room.say_services.index("messages")
+    %input{type: 'checkbox', name: "t", checked: value, onclick: "toggle_service(this, 'messages');"}
 %ul
   -@room.door_messages.each do |dm|
     %ul= link_to dm.message , dm
