@@ -14,8 +14,7 @@ class RoomsController < ApplicationController
 
   def tell_joke
     joke_type = params[:joke_type]
-    joke_text = JokeGenerator.tell_joke(joke_type)
-    @message = @room.say(joke_text)
+    @message = @room.say(message_type: joke_type)
     redirect_to @room, notice: "Said: #{@message}"
   end
 

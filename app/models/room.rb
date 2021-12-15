@@ -24,23 +24,26 @@ class Room < ApplicationRecord
   validates_format_of :quiet_hours, with: /\d\d?[ap]m-\d\d?[ap]m/, allows_nil: true, allows_blank: true, if: ->(t){t.quiet_hours.present?}
 
 
-  def say(message=nil)
-    message = get_message if message.blank?
-    message = message.gsub("\n", "  ").gsub("'", "").gsub("&", "and").gsub("\"", "").gsub("\r", "").gsub("\t", "")
+  def say(message=nil, message_type: nil)
+    message = get_message(message_type) if message.blank?
     NodeRedService.get(:say, {speaker: speaker_id, message: message})
     message
   end
 
-  def get_message
+  def get_message(message_type=nil)
     # was originally: room.door_messages.sample.message
     options = say_services.clone
-    chosen = options.sample
-    case(chosen)
+    message_type ||= options.sample
+    message = case(message_type)
     when 'messages'
       door_messages.sample.message
     else
-       JokeGenerator.tell_joke(chosen)
+       JokeGenerator.tell_joke(message_type)
     end
+    Rails.logger.info "Got message[#{message_type}] for Room[#{self.name}]: #{message}"
+    message = message.gsub("\n", "  ").gsub("'", "").gsub("&#39;", "").gsub("&", "and").gsub("\"", "").gsub("\r", "").gsub("\t", "")
+    Rails.logger.info "Translated message to say: #{message}"
+    message
   end
 
   def cooling_down?

@@ -17,4 +17,17 @@ class Light < ApplicationRecord
     validates_uniqueness_of :entity_id
     validates_presence_of :name
     validates_uniqueness_of :name
+
+    def set_color(r, g, b)
+      NodeRedService.post(:rgb_light, entity_id: self.entity_id, r: r, g: g, b: b)
+    end
+
+    def self.set_all_color(r,g,b)
+      threads = []
+      Light.order(:entity_id).all.each do |l|
+        threads << Thread.new { l.set_color(r,g,b)}
+      end
+      threads.map{|t| t.value}
+    end
+
 end

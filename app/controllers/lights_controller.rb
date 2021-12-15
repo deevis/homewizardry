@@ -5,7 +5,7 @@ class LightsController < ApplicationController
   def set_color
     rgb_hex = params['color']['rgb']
     r, g, b = rgb_hex.match(/^#(..)(..)(..)$/).captures.map(&:hex)
-    NodeRedService.post(:rgb_light, entity_id: @light.entity_id, r: r, g: g, b: b)
+    @light.set_color(r, g, b)
     redirect_to @light, notice: "Color set"
   end
 
