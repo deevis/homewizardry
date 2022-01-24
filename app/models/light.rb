@@ -30,4 +30,8 @@ class Light < ApplicationRecord
       threads.map{|t| t.value}
     end
 
+    def self.color_cycle_all(count=1000, colors =  [[255,0,0], [0,255,0], [0,0,255], [255,0,255]])
+      Thread.new {count.times{ colors.each{|r,g,b| Light.set_all_color(r,g,b); sleep 4}}}
+      "Cycling started on background thread"
+    end
 end

@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_29_015329) do
+ActiveRecord::Schema.define(version: 2022_01_24_004548) do
 
   create_table "door_messages", charset: "utf8mb4", force: :cascade do |t|
     t.string "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "room_id", null: false
+    t.bigint "room_id"
     t.index ["room_id"], name: "index_door_messages_on_room_id"
   end
 
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 2021_11_29_015329) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_lights_on_room_id"
+  end
+
+  create_table "played_messages", charset: "utf8mb4", force: :cascade do |t|
+    t.string "message", limit: 1000
+    t.string "message_type", limit: 40
+    t.bigint "room_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_played_messages_on_room_id"
   end
 
   create_table "rooms", charset: "utf8mb4", force: :cascade do |t|
@@ -41,5 +50,7 @@ ActiveRecord::Schema.define(version: 2021_11_29_015329) do
     t.string "say_services", limit: 4000
   end
 
+  add_foreign_key "door_messages", "rooms"
   add_foreign_key "lights", "rooms"
+  add_foreign_key "played_messages", "rooms"
 end

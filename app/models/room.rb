@@ -16,6 +16,7 @@
 class Room < ApplicationRecord
   has_many :door_messages
   has_many :lights
+  has_many :played_messages
 
   serialize :say_services, Array
 
@@ -26,6 +27,9 @@ class Room < ApplicationRecord
 
   def say(message=nil, message_type: nil)
     message = get_message(message_type) if message.blank?
+    played_message = played_messages.where(message: message, message_type: message_type).first_or_create
+    played_message.updated_at = Time.now
+    played_message.save!
     NodeRedService.get(:say, {speaker: speaker_id, message: message})
     message
   end
