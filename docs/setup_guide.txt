@@ -7,7 +7,6 @@ docker run --init -d \
   homeassistant/raspberrypi4-homeassistant:stable
 
 
-941edad0-4d01-408d-9e75-55610237358a
 
 https://hooks.nabu.casa/gAAAAABgN3Kh3n5a-cL7CR3TSNTP66pgi8R9lgE6ErPVPms2i2gZcccClqmhfEGWz4MvE5IN4LZTkdAfpiwnuYDSO9-3FJMu-YiUgrBXrtzhpbvSslS243knwMZ0Vef9USFXOltNtHi9s12wM-KmPO2XjLlxSF5XOtmGP1mt1rv77sUhkzlohUQ=
 
@@ -23,52 +22,67 @@ sudo apt-get install mosquitto
 # https://www.home-assistant.io/integrations/mqtt_eventstream/
 
 
-https://console.nest.google.com/device-access/project/8c473746-077d-407f-b5fe-f9ccaa8efeec/information
-Orange Door (Nest Project) - Google Services - 
-Project ID: 8c473746-077d-407f-b5fe-f9ccaa8efeec
+################ Integrating NEST Thermostat ##################################################################
+create oauth creds here: https://console.cloud.google.com/apis/credentials
+and then update the oauth client id here: https://console.nest.google.com/device-access
 
-Redirect URI: https://elou264ij9z3nuq32viu0wxq2uak0hc9.ui.nabu.casa/auth/external/callback
-Client ID: 27660444898-3h7bifv2s8rpafia04j184v5h5g55clu.apps.googleusercontent.com
-Client Secret: ElLOcJOE9Ph9uHBSnLXaZwRE
 
-# Client ID: 27660444898-kf6gimfeqfor30d5t9fgc3nrr6sfhfc7.apps.googleusercontent.com
-# Client Secret: hiKIWeLfGXgKawutppLTxIT7
+# Home assistant configuration.yaml
+nest:
+  client_id: <YOUR GCC CLIENT_ID>
+  client_secret: <YOUR GCC CLIENT SECRET>
+  # "Project ID" in the Device Access Console
+  project_id: <YOUR GCC PROJECT ID>
+  # Provide the full path exactly as shown under "Subscription name" in Google Cloud Console
+  subscriber_id: projects/home-assistant-1614469296822/subscriptions/home-assistant-subscription
 
-https://nestservices.google.com/partnerconnections/8c473746-077d-407f-b5fe-f9ccaa8efeec/auth?
+Redirect URI: https://<YOUR NABU CASA URL>/auth/external/callback
+
+
+https://nestservices.google.com/partnerconnections/<YOUR GCC PROJECT ID>/auth?
 redirect_uri=https://www.google.com&
 access_type=offline&
 prompt=consent&
-client_id=27660444898-kf6gimfeqfor30d5t9fgc3nrr6sfhfc7.apps.googleusercontent.com&
+client_id=<INSERT_CLIENT_ID_HERE>&
 response_type=code&
 scope=https://www.googleapis.com/auth/sdm.service
 
 
-curl -L -X POST 'https://www.googleapis.com/oauth2/v4/token?client_id=27660444898-kf6gimfeqfor30d5t9fgc3nrr6sfhfc7.apps.googleusercontent.com&client_secret=hiKIWeLfGXgKawutppLTxIT7&code=4/0AY0e-g7gwK2K5YVRIDKaN4VTCJz8koHCopWnBKnzYiBCKL0XYscipmWqCjC4ieQ2R_f5hQ&grant_type=authorization_code&redirect_uri=https://www.google.com'
+curl -L -X POST 'https://www.googleapis.com/oauth2/v4/token?client_id=<INSERT_CLIENT_ID_HERE>&client_secret=<INSERT_CLIENT_SECRET_HERE>&grant_type=authorization_code&redirect_uri=https://www.google.com'
 
 {
-  "access_token": "ya29.A0AfH6SMAUm6lVcPQZRNLErkQRyzL_M7ThdCydvwEWcD9HLCVqFLUHwkBgvaSYAMvZPnU-KRKONdXVM8XBJ7KLsD1093EHxjCP0YzbUsWWyfmzegQja09m6nfCmBX2i4M3Tk1ekq6-usA0TXXaXWStXDkocsbF",
+  "access_token": "<THE access_token FOR USE BELOW>",
   "expires_in": 3599,
   "refresh_token": "1//04hpIsELrZhlHCgYIARAAGAQSNwF-L9Ir54Q4CMGjCRDGvgLQky2lkGA98aFgOTuI-WTNgzhP235IF_2dL3zWr2KpMImHOT3bc6c",
   "scope": "https://www.googleapis.com/auth/sdm.service",
   "token_type": "Bearer"
 }
 
-curl -X GET 'https://smartdevicemanagement.googleapis.com/v1/enterprises/8c473746-077d-407f-b5fe-f9ccaa8efeec/devices' -H 'Content-Type: application/json' -H 'Authorization: Bearer ya29.A0AfH6SMAUm6lVcPQZRNLErkQRyzL_M7ThdCydvwEWcD9HLCVqFLUHwkBgvaSYAMvZPnU-KRKONdXVM8XBJ7KLsD1093EHxjCP0YzbUsWWyfmzegQja09m6nfCmBX2i4M3Tk1ekq6-usA0TXXaXWStXDkocsbF'
+curl -X GET 'https://smartdevicemanagement.googleapis.com/v1/enterprises/<YOUR GCC PROJECT ID>/devices' -H 'Content-Type: application/json' -H 'Authorization: Bearer <INSERT access_token FROM ABOVE>'
 
 
-curl -X GET 'https://smartdevicemanagement.googleapis.com/v1/enterprises/8c473746-077d-407f-b5fe-f9ccaa8efeec/devices' \
+curl -X GET 'https://smartdevicemanagement.googleapis.com/v1/enterprises/<YOUR GCC PROJECT ID>/devices' \
     -H 'Content-Type: application/json' \
-    -H 'Authorization: Bearer ya29.A0AfH6SMAUm6lVcPQZRNLErkQRyzL_M7ThdCydvwEWcD9HLCVqFLUHwkBgvaSYAMvZPnU-KRKONdXVM8XBJ7KLsD1093EHxjCP0YzbUsWWyfmzegQja09m6nfCmBX2i4M3Tk1ekq6-usA0TXXaXWStXDkocsbF'
+    -H 'Authorization: Bearer <INSERT access_token FROM ABOVE>'
 
 
-fitbit
+########################################################################################################
+fitbit (get oauthid from https://dev.fitbit.com/apps)
+
+ha_config/fitbit.conf:
+
+{
+    "access_token": "<NOT SURE HOW TO GET THIS- LEAVE BLANK?>",
+    "refresh_token": "<NOT SURE HOW TO GET THIS- LEAVE BLANK?>",
+    "client_id": "<YOUR CLIENT_ID>",
+    "client_secret": "<YOUR CLIENT SECRET>"
+}
+
 
 OAuth 2.0 Client ID
 
-Client Secret
-7153badea0e8664f216c1ba00f1a0ccd
 Callback URL
-https://elou264ij9z3nuq32viu0wxq2uak0hc9.ui.nabu.casa/api/fitbit/callback
+https://<YOUR NABU CASA URL>/api/fitbit/callback
 OAuth 2.0: Authorization URI
 https://www.fitbit.com/oauth2/authorize
 OAuth 2.0: Access/Refresh Token Request URI
