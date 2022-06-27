@@ -5,10 +5,10 @@
   %h1 Listing Lights
 
 %h3 Configured Lights
-.table-responsive
-  %table.table.table-striped.table-bordered.table-hover
-    %thead
-      %tr
+%div{class: "relative overflow-x-auto shadow-md sm:rounded-lg"}
+  %table{class: "w-full text-sm text-left text-gray-500 dark:text-gray-400"}
+    %thead{class: "text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"}
+      %tr{class: "bg-white border-b dark:bg-gray-800 dark:border-gray-700"}
         %th Room
         %th Entity
         %th Name
@@ -17,7 +17,7 @@
 
     %tbody
       - @lights.each do |light|
-        %tr
+        %tr{class: "bg-white border-b dark:bg-gray-800 dark:border-gray-700"}
           %td= link_to light.room&.name, light.room
           %td= link_to light.entity_id, light
           %td= light.name
@@ -25,10 +25,10 @@
           %td= link_to 'Destroy', light, data: { confirm: 'Are you sure?' }, method: :delete
 
 %h3 Unconfigured Lights
-.table-responsive
-  %table.table.table-striped.table-bordered.table-hover
-    %thead
-      %tr
+%div{class: "relative overflow-x-auto shadow-md sm:rounded-lg"}
+  %table{class: "w-full text-sm text-left text-gray-500 dark:text-gray-400"}
+    %thead{class: "text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"}
+      %tr{class: "bg-white border-b dark:bg-gray-800 dark:border-gray-700"}
         %th Entity
         %th Friendly Name
         %th 
@@ -36,7 +36,7 @@
     %tbody
       - @rgb_lights.each do |l|
         -next if Light.find_by(entity_id: l['entity_id']).present?
-        %tr
+        %tr{class: "bg-white border-b dark:bg-gray-800 dark:border-gray-700"}
           %td= l['entity_id']
           %td= l['attributes']['friendly_name']
           %td

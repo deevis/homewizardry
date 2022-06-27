@@ -4,10 +4,10 @@
     New Room
   %h1 Listing rooms
 
-.table-responsive
-  %table.table.table-striped.table-bordered.table-hover.table-condensed
-    %thead
-      %tr
+%div{class: "relative overflow-x-auto shadow-md sm:rounded-lg"}
+  %table{class: "w-full text-sm text-left text-gray-500 dark:text-gray-400"}
+    %thead{class: "text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"}
+      %tr{class: "bg-white border-b dark:bg-gray-800 dark:border-gray-700"}
         %th=sort_link(@q, :name)
         %th=sort_link(@q, :quiet_hours)
         %th=sort_link(@q, :cooldown_seconds)
@@ -20,7 +20,7 @@
 
     %tbody
       - @rooms.each do |room|
-        %tr
+        %tr{class: "bg-white border-b dark:bg-gray-800 dark:border-gray-700"}
           %td= link_to room.name, room
           %td= room.quiet_hours
           %td= room.cooldown_seconds

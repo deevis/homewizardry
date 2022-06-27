@@ -18,6 +18,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :skunk_works do
+    collection do
+      get :say_randomly
+    end
+  end
+
   root 'rooms#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

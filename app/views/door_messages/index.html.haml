@@ -4,10 +4,10 @@
     New Door message
   %h1 Listing Messages
 
-.table-responsive
-  %table.table.table-striped.table-bordered.table-hover.table-condensed
-    %thead
-      %tr
+%div{class: "relative overflow-x-auto shadow-md sm:rounded-lg"}
+  %table{class: "w-full text-sm text-left text-gray-500 dark:text-gray-400"}
+    %thead{class: "text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"}
+      %tr{class: "bg-white border-b dark:bg-gray-800 dark:border-gray-700"}
         %th=sort_link(@q, :room_name)
         %th=sort_link(@q, :message)
         %th
@@ -16,7 +16,7 @@
 
     %tbody
       - @door_messages.each do |door_message|
-        %tr
+        %tr{class: "bg-white border-b dark:bg-gray-800 dark:border-gray-700"}
           %td= link_to door_message.room&.name, door_message.room
           %td= link_to door_message.message, door_message
           %td= link_to 'Edit', edit_door_message_path(door_message)

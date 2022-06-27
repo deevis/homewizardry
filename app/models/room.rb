@@ -27,10 +27,7 @@ class Room < ApplicationRecord
 
   def say(message=nil, message_type: nil)
     message = get_message(message_type) if message.blank?
-    played_message = played_messages.where(message: message, message_type: message_type).first_or_create
-    played_message.updated_at = Time.now
-    played_message.save!
-    NodeRedService.get(:say, {speaker: speaker_id, message: message})
+    NodeRedService.get(:say, {speaker: speaker_id.split(".").last, msg: message})
     message
   end
 
@@ -47,6 +44,9 @@ class Room < ApplicationRecord
     Rails.logger.info "Got message[#{message_type}] for Room[#{self.name}]: #{message}"
     message = message.gsub("\n", "  ").gsub("'", "").gsub("&#39;", "").gsub("&", "and").gsub("\"", "").gsub("\r", "").gsub("\t", "")
     Rails.logger.info "Translated message to say: #{message}"
+    played_message = played_messages.where(message: message, message_type: message_type).first_or_create
+    played_message.updated_at = Time.now
+    played_message.save!
     message
   end
 
