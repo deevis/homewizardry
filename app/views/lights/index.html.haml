@@ -1,14 +1,12 @@
-.page-header
-  = link_to new_light_path, class: 'btn btn-primary' do
-    %span.glyphicon.glyphicon-plus
-    New Light
-  %h1 Listing Lights
+.flex.flex-row.justify-between.py-5
+  %h1.text-3xl Listing Lights
+  .action-new=link_to 'New Light', new_light_path
 
 %h3 Configured Lights
 %div{class: "relative overflow-x-auto shadow-md sm:rounded-lg"}
   %table{class: "w-full text-sm text-left text-gray-500 dark:text-gray-400"}
     %thead{class: "text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"}
-      %tr{class: "bg-white border-b dark:bg-gray-800 dark:border-gray-700"}
+      %tr
         %th Room
         %th Entity
         %th Name
@@ -28,7 +26,7 @@
 %div{class: "relative overflow-x-auto shadow-md sm:rounded-lg"}
   %table{class: "w-full text-sm text-left text-gray-500 dark:text-gray-400"}
     %thead{class: "text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"}
-      %tr{class: "bg-white border-b dark:bg-gray-800 dark:border-gray-700"}
+      %tr
         %th Entity
         %th Friendly Name
         %th 

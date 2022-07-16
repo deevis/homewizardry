@@ -3,6 +3,7 @@ class RoomsController < ApplicationController
 
   # GET /rooms or /rooms.json
   def index
+    @entities = NodeRedService.get(:entities)
     @q = Room.ransack(params[:q])
     @rooms = @q.result
   end

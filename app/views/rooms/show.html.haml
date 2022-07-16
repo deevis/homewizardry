@@ -1,12 +1,9 @@
-.page-header
-  = link_to rooms_path, class: 'btn btn-default' do
-    %span.glyphicon.glyphicon-list-alt
-    Back
-  = link_to edit_room_path(@room), class: 'btn btn-primary' do
-    %span.glyphicon.glyphicon-pencil
-    Edit
-  %h1
+.flex.flex-row.justify-between.py-5
+  %h1.text-3xl
     =@room.name
+  %div
+    = link_to 'Back', rooms_path, class: 'action-back'
+    = link_to 'Edit', edit_room_path(@room), class: 'action-edit'
 
 
 .row

@@ -1,0 +1,21 @@
+.flex.flex-row.justify-between.py-5
+  %h1.text-3xl Showing #{@sensors.count} Sensors
+
+%ul
+  -@sensors.each do |s|
+    %li
+      #{s.name}[#{s.entity_id}] (#{s.room&.name}) - battery[#{s.battery_entity_id}] - Level[%#{s.battery_level}]
+
+%h1.text-2xl Unconfigured Batteries
+%ul
+  -@available_batteries.each do |b|
+    -next if Sensor.where(battery_entity_id: b['entity_id']).present?
+    %li
+      =render 'shared/home_assistant_entity', data: b
+
+%h1.text-2xl Unconfigured Contact Sensors
+%ul
+  -@available_contacts.each do |c|
+    -next if Sensor.where(entity_id: c['entity_id']).present?
+    %li
+      =render 'shared/home_assistant_entity', data: c

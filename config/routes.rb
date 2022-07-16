@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'sensors/index'
   resources :lights do
     member do
       post :set_color
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
       get :get_message
     end
   end
+
+  resources :sensors, only: [:index]
 
   resources :skunk_works do
     collection do

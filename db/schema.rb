@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_27_070661) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_16_220240) do
   create_table "door_messages", charset: "utf8mb4", force: :cascade do |t|
     t.string "message"
     t.datetime "created_at", null: false
@@ -47,8 +47,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_070661) do
     t.datetime "cooldown_started", precision: nil
     t.string "quiet_hours"
     t.string "say_services", limit: 4000
+    t.integer "door_contact_battery_level"
+  end
+
+  create_table "sensors", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.string "sensor_type", limit: 30
+    t.string "entity_id"
+    t.string "battery_entity_id"
+    t.integer "battery_level"
+    t.bigint "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "last_seen_date"
+    t.index ["room_id"], name: "index_sensors_on_room_id"
   end
 
   add_foreign_key "lights", "rooms"
   add_foreign_key "played_messages", "rooms"
+  add_foreign_key "sensors", "rooms"
 end

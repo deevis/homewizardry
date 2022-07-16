@@ -1,4 +1,13 @@
-.page-header
+%h1.text-2xl
   SkunkWorks
 
 - rooms = Room.all.select{|r| r.speaker_id.present?}
+
+
+%h2.text-xl
+  All Entities
+
+-entities = NodeRedService.get(:entities)
+-entities.sort{|a,b| a['entity_id'] <=> b['entity_id']}.each do |e|
+  %pre=e
+  

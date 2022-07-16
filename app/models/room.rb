@@ -2,22 +2,24 @@
 #
 # Table name: rooms
 #
-#  id               :bigint           not null, primary key
-#  name             :string(255)
-#  door_contact_id  :string(255)
-#  speaker_id       :string(255)
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  cooldown_seconds :integer          default(5)
-#  cooldown_started :datetime
-#  quiet_hours      :string(255)
-#  say_services     :string(4000)
+#  id                         :bigint           not null, primary key
+#  name                       :string(255)
+#  door_contact_id            :string(255)
+#  speaker_id                 :string(255)
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  cooldown_seconds           :integer          default(5)
+#  cooldown_started           :datetime
+#  quiet_hours                :string(255)
+#  say_services               :string(4000)
+#  door_contact_battery_level :integer
 #
 class Room < ApplicationRecord
   has_many :door_messages
   has_many :lights
   has_many :played_messages
-
+  has_many :sensors
+  
   serialize :say_services, Array
 
   default_scope ->{order("name ASC")}
@@ -49,6 +51,7 @@ class Room < ApplicationRecord
     played_message.save!
     message
   end
+
 
   def cooling_down?
     currently_cooling_down = if cooldown_started
