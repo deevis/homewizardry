@@ -10,9 +10,13 @@
           .text-xl=link_to room.name, room
           %div
             -if room.door_contact_id.present?
-              -door_contact_state = @entities.detect{|e| e['entity_id'] == room.door_contact_id}['state'] rescue nil
+              -door_contact_entity = @entities.detect{|e| e['entity_id'] == room.door_contact_id}
+              -door_contact_state = door_contact_entity['state'] rescue nil
               -door_style = door_contact_state == 'on' ? ["open", "#888888"] : ["closed", "#ffffff"]
-              .fa.fa-light{class: "fa-door-#{door_style[0]}", style: "color: #{door_style[1]}"}
+              -if door_contact_entity.present?
+                .fa.fa-light{class: "fa-door-#{door_style[0]}", style: "color: #{door_style[1]}", "data-tooltip-target"=>"door-contact-#{room.door_contact_id}", "data-tooltip-trigger"=>"hover"}
+                %div{id:"door-contact-#{room.door_contact_id}", role:"tooltip", class:"inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-black bg-gray-300 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700"}
+                  ="#{room.door_contact_id} is #{door_style[0]} as of #{time_ago_in_words(Time.zone.parse(door_contact_entity.dig('last_updated')))} ago"              
             -if room.speaker_id.present?
               .fa.fa-light.fa-volume-low
             -room.lights.each do |l|
@@ -26,7 +30,7 @@
               -else
                 .shadow-none.flex.flex-col.text-center.whitespace-nowrap.text-white.justify-center.bg-red-600{style:"width:#{sensor.battery_level}%", "data-tooltip-target"=>"sensor-battery-#{sensor.id}", "data-tooltip-trigger"=>"hover"}
         %div{id:"sensor-battery-#{sensor.id}", role:"tooltip", class:"inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-black bg-gray-300 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700"}
-          ="#{sensor.battery_level}% remaining - #{sensor.name}"
+          ="#{sensor.battery_level}% remaining - #{sensor.name} as of #{time_ago_in_words(sensor.last_seen_date)} ago"
       .flex.flex-row.justify-between
         .px-5.py-3
           .font-bold Quiet Hours

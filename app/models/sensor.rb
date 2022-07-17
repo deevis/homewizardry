@@ -11,6 +11,7 @@
 #  room_id           :bigint           not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  last_seen_date    :datetime
 #
 class Sensor < ApplicationRecord
   belongs_to :room
@@ -20,6 +21,25 @@ class Sensor < ApplicationRecord
   validates :entity_id, presence: true
   validates :sensor_type, inclusion: { in: SENSOR_TYPES }
   before_validation :set_defaults
+
+  def self.update_entities
+    entities = NodeRedService.get(:entities)
+    Sensor.find_each do |s|
+      entity = entities.detect{|e| e['entity_id'] == s.entity_id}
+      if entity.present?
+        last_updated_time = Time.zone.parse(entity['last_updated'])
+        s.last_seen_date = last_updated_time if s.last_seen_date.nil? || last_updated_time > s.last_seen_date
+      end
+      battery = entities.detect{|e| e['entity_id'] == s.battery_entity_id}
+      if battery.present?
+        s.battery_level = battery['state'].to_i
+        last_updated_time = Time.zone.parse(battery['last_updated'])
+        s.last_seen_date = last_updated_time if s.last_seen_date.nil? || last_updated_time > s.last_seen_date
+      end
+      s.save!
+    end
+    return entities
+  end
 
   def self.update_battery_levels
     # [ {"entity_id":"sensor.upstairs_door_battery","name":"Upstairs Door Battery","state":"26"},

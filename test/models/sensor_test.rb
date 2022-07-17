@@ -11,6 +11,7 @@
 #  room_id           :bigint           not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  last_seen_date    :datetime
 #
 require "test_helper"
 
