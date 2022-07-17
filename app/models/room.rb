@@ -73,10 +73,10 @@ class Room < ApplicationRecord
     start_time, end_time = self.quiet_hours.split("-")
     if start_time.index("pm") && end_time.index("am")
       # this is overnight, perform 2 checks...
-      Time.now.between?(Time.parse(start_time), Time.parse("11:59:59.999pm")) ||
-      Time.now.between?(Time.parse("12am"), Time.parse(end_time))
+      Time.zone.now.between?(Time.zone.parse(start_time), Time.zone.parse("11:59:59.999pm")) ||
+      Time.zone.now.between?(Time.zone.parse("12am"), Time.zone.parse(end_time))
     else
-      Time.now.between?(Time.parse(start_time), Time.parse(end_time))
+      Time.zone.now.between?(Time.zone.parse(start_time), Time.zone.parse(end_time))
     end
   end
 
