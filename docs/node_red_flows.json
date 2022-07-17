@@ -1,0 +1,2156 @@
+[
+    {
+        "id": "d9dc8ab8.ac03d8",
+        "type": "tab",
+        "label": "Door speak",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "8615eda2.13049",
+        "type": "tab",
+        "label": "HTTP Requests",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "17f2f2a0.20eded",
+        "type": "tab",
+        "label": "Randomize Lights",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ac03e1c4.f5e5b",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "81e04573.9be528",
+        "type": "mqtt-broker",
+        "name": "Localhost",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "NodeRed",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "6fd61e46.8c13a",
+        "type": "server",
+        "name": "Home Assistant",
+        "legacy": false,
+        "addon": false,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true
+    },
+    {
+        "id": "f8a9f099.df615",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "bbaff045.b6e3e",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "acd4f921.929998",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "f8a9f099.df615",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "8afb3597.c8e9d8",
+        "type": "mqtt in",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "",
+        "topic": "homeassistant.sensors.contact",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "81e04573.9be528",
+        "x": 130,
+        "y": 320,
+        "wires": [
+            [
+                "bd3544d2.f16798",
+                "4bde25d4.f4c44c",
+                "2fbf835c.cb698c"
+            ]
+        ]
+    },
+    {
+        "id": "bd3544d2.f16798",
+        "type": "debug",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 250,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "65a39ec1.5b77d",
+        "type": "api-call-service",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "Darrens Door Opened",
+        "server": "6fd61e46.8c13a",
+        "version": 1,
+        "debugenabled": true,
+        "service_domain": "tts",
+        "service": "google_translate_say",
+        "entityId": "media_player.darrens_room_speaker",
+        "data": "{\"message\":\"You have entered the room - way to go...\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1100,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "25927571.9a64fa",
+        "type": "inject",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "closed",
+        "payloadType": "str",
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "4bde25d4.f4c44c"
+            ]
+        ]
+    },
+    {
+        "id": "4bde25d4.f4c44c",
+        "type": "switch",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "Opened/Closed",
+        "property": "payload.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "opened",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "closed",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 380,
+        "y": 400,
+        "wires": [
+            [
+                "c109b6c8.f55178",
+                "fb5769d0.5a1058"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f6762974.639158",
+        "type": "inject",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "opened",
+        "payloadType": "str",
+        "x": 430,
+        "y": 100,
+        "wires": [
+            [
+                "4bde25d4.f4c44c"
+            ]
+        ]
+    },
+    {
+        "id": "c109b6c8.f55178",
+        "type": "switch",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "Which Door?",
+        "property": "payload.entity_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "binary_sensor.downstairs_door_contact",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "binary_sensor.darren_s_door_contact",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "binary_sensor.nathan_s_door_contact",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "binary_sensor.natalie_s_door_contact",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "binary_sensor.upstairs_door_contact",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "binary_sensor.back_door_contact",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "binary_sensor.moiffice_door_contact",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 7,
+        "x": 570,
+        "y": 280,
+        "wires": [
+            [
+                "76edc07f.d3f92"
+            ],
+            [
+                "76edc07f.d3f92"
+            ],
+            [
+                "76edc07f.d3f92"
+            ],
+            [
+                "76edc07f.d3f92"
+            ],
+            [
+                "8a1e44c2.e3c378"
+            ],
+            [
+                "4472f406.4bda7c"
+            ],
+            [
+                "76edc07f.d3f92"
+            ]
+        ]
+    },
+    {
+        "id": "4fe4ad96.7fa1b4",
+        "type": "api-call-service",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "Downstairs Door Opened",
+        "server": "6fd61e46.8c13a",
+        "version": 1,
+        "debugenabled": true,
+        "service_domain": "tts",
+        "service": "google_translate_say",
+        "entityId": "media_player.basement_speaker",
+        "data": "{\"message\":\"{{payload.message}}\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1110,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aac88e28.4bced",
+        "type": "api-call-service",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "Nathans Door Opened",
+        "server": "6fd61e46.8c13a",
+        "version": 1,
+        "debugenabled": true,
+        "service_domain": "tts",
+        "service": "google_translate_say",
+        "entityId": "media_player.nathan_s_room_speaker",
+        "data": "{\"message\":\"You are a master builder!\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1100,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "40c711d4.ca13e",
+        "type": "api-call-service",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "Natalies Door Opened",
+        "server": "6fd61e46.8c13a",
+        "version": 1,
+        "debugenabled": true,
+        "service_domain": "tts",
+        "service": "google_translate_say",
+        "entityId": "media_player.natalie_s_room_speaker",
+        "data": "{\"message\":\"Remember to do awesome things!\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1100,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a61fcbb8.c87e48",
+        "type": "api-call-service",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "Natalies Lights",
+        "server": "6fd61e46.8c13a",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "switch.natalie_s_lights",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 800,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8a1e44c2.e3c378",
+        "type": "api-call-service",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "Upstairs Door Opened",
+        "server": "6fd61e46.8c13a",
+        "version": 1,
+        "debugenabled": true,
+        "service_domain": "tts",
+        "service": "google_translate_say",
+        "entityId": "media_player.kitchen_speaker",
+        "data": "{\"message\":\"Orange Door!\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1100,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4472f406.4bda7c",
+        "type": "api-call-service",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "Back Door Opened",
+        "server": "6fd61e46.8c13a",
+        "version": 1,
+        "debugenabled": true,
+        "service_domain": "tts",
+        "service": "google_translate_say",
+        "entityId": "media_player.kitchen_speaker",
+        "data": "{\"message\":\"Don't forget to close the backdoor\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1090,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "549a19cb.da6ef8",
+        "type": "api-call-service",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "Back Door Opened",
+        "server": "6fd61e46.8c13a",
+        "version": 1,
+        "debugenabled": true,
+        "service_domain": "tts",
+        "service": "google_translate_say",
+        "entityId": "media_player.kitchen_speaker",
+        "data": "{\"message\":\"Don't forget to close the backdoor\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1090,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3e03ad8d.cf9902",
+        "type": "api-call-service",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "Moiffice Door Opened",
+        "server": "6fd61e46.8c13a",
+        "version": 1,
+        "debugenabled": true,
+        "service_domain": "tts",
+        "service": "google_translate_say",
+        "entityId": "media_player.moira_s_room_speaker",
+        "data": "{\"message\":\"Don't forget to be awesome\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1100,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8e8b21a7.c198d",
+        "type": "http in",
+        "z": "8615eda2.13049",
+        "name": "say",
+        "url": "say",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "fcee350b.f18b38",
+                "dd2ec1d.223294"
+            ]
+        ]
+    },
+    {
+        "id": "fcee350b.f18b38",
+        "type": "api-call-service",
+        "z": "8615eda2.13049",
+        "name": "Say on speaker",
+        "server": "6fd61e46.8c13a",
+        "version": 1,
+        "debugenabled": true,
+        "service_domain": "tts",
+        "service": "google_translate_say",
+        "entityId": "media_player.{{payload.speaker}}",
+        "data": "{\"message\":\"{{payload.msg}}\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "77249bf5.4967e4"
+            ]
+        ]
+    },
+    {
+        "id": "71aaae08.2d5c9",
+        "type": "http response",
+        "z": "8615eda2.13049",
+        "name": "Response",
+        "statusCode": "200",
+        "headers": {},
+        "x": 960,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "77249bf5.4967e4",
+        "type": "template",
+        "z": "8615eda2.13049",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"success\": true, \"said\": \"{{payload.msg}}\"}",
+        "output": "str",
+        "x": 720,
+        "y": 160,
+        "wires": [
+            [
+                "71aaae08.2d5c9"
+            ]
+        ]
+    },
+    {
+        "id": "2ca70a55.25d2e6",
+        "type": "http in",
+        "z": "8615eda2.13049",
+        "name": "batteries",
+        "url": "batteries",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 260,
+        "wires": [
+            [
+                "dae17d02.eaa15"
+            ]
+        ]
+    },
+    {
+        "id": "dae17d02.eaa15",
+        "type": "ha-get-entities",
+        "z": "8615eda2.13049",
+        "server": "6fd61e46.8c13a",
+        "name": "query",
+        "rules": [
+            {
+                "property": "attributes.device_class",
+                "logic": "is",
+                "value": "battery",
+                "valueType": "str"
+            }
+        ],
+        "output_type": "array",
+        "output_empty_results": true,
+        "output_location_type": "msg",
+        "output_location": "payload",
+        "output_results_count": 1,
+        "x": 370,
+        "y": 260,
+        "wires": [
+            [
+                "6f5aa6c3.bde688"
+            ]
+        ]
+    },
+    {
+        "id": "a8718ebc.c6946",
+        "type": "http response",
+        "z": "8615eda2.13049",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1080,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "a6bd8fa8.b3cd5",
+        "type": "template",
+        "z": "8615eda2.13049",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"entity_id\": \"{{payload.entity_id}}\",\n \"name\": \"{{payload.attributes.friendly_name}}\",\n \"state\": \"{{payload.state}}\" }",
+        "output": "json",
+        "x": 740,
+        "y": 260,
+        "wires": [
+            [
+                "f2bcdc76.c467"
+            ]
+        ]
+    },
+    {
+        "id": "6f5aa6c3.bde688",
+        "type": "split",
+        "z": "8615eda2.13049",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 570,
+        "y": 260,
+        "wires": [
+            [
+                "a6bd8fa8.b3cd5"
+            ]
+        ]
+    },
+    {
+        "id": "f2bcdc76.c467",
+        "type": "join",
+        "z": "8615eda2.13049",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 910,
+        "y": 260,
+        "wires": [
+            [
+                "a8718ebc.c6946"
+            ]
+        ]
+    },
+    {
+        "id": "69fe4ad3.562f14",
+        "type": "comment",
+        "z": "8615eda2.13049",
+        "name": "/say?speaker=basement_speaker&msg=hello+there",
+        "info": "",
+        "x": 310,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "29a5a513.f6ceba",
+        "type": "comment",
+        "z": "8615eda2.13049",
+        "name": "/batteries",
+        "info": "",
+        "x": 180,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "74883ef0.6fc84",
+        "type": "http in",
+        "z": "8615eda2.13049",
+        "name": "lights on",
+        "url": "lights_on",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 320,
+        "wires": [
+            [
+                "91b6c919.499b78"
+            ]
+        ]
+    },
+    {
+        "id": "91b6c919.499b78",
+        "type": "ha-get-entities",
+        "z": "8615eda2.13049",
+        "server": "6fd61e46.8c13a",
+        "name": "query",
+        "rules": [
+            {
+                "property": "state",
+                "logic": "is",
+                "value": "on",
+                "valueType": "str"
+            },
+            {
+                "property": "attributes.brightness",
+                "logic": "gt",
+                "value": "0",
+                "valueType": "num"
+            }
+        ],
+        "output_type": "array",
+        "output_empty_results": true,
+        "output_location_type": "msg",
+        "output_location": "payload",
+        "output_results_count": 1,
+        "x": 370,
+        "y": 320,
+        "wires": [
+            [
+                "c7701c7a.98bc9"
+            ]
+        ]
+    },
+    {
+        "id": "c7701c7a.98bc9",
+        "type": "http response",
+        "z": "8615eda2.13049",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 580,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "6d9aedf9.6a5fc4",
+        "type": "http in",
+        "z": "8615eda2.13049",
+        "name": "Stash",
+        "url": "stash",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 740,
+        "wires": [
+            [
+                "edeedb6c.b37fd8"
+            ]
+        ]
+    },
+    {
+        "id": "219bee13.31e902",
+        "type": "file",
+        "z": "8615eda2.13049",
+        "name": "stash.txt",
+        "filename": "/data/stash.txt",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 760,
+        "y": 740,
+        "wires": [
+            [
+                "fc33011.b5852"
+            ]
+        ]
+    },
+    {
+        "id": "fc33011.b5852",
+        "type": "http response",
+        "z": "8615eda2.13049",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1000,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "5f43d8e8.e1d948",
+        "type": "template",
+        "z": "8615eda2.13049",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n{{timestamp}}\n\n{{payload}}\n\n\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n",
+        "output": "str",
+        "x": 560,
+        "y": 740,
+        "wires": [
+            [
+                "219bee13.31e902"
+            ]
+        ]
+    },
+    {
+        "id": "edeedb6c.b37fd8",
+        "type": "function",
+        "z": "8615eda2.13049",
+        "name": "Add timestamp",
+        "func": "msg.timestamp = new Date().toString();\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 350,
+        "y": 740,
+        "wires": [
+            [
+                "5f43d8e8.e1d948"
+            ]
+        ]
+    },
+    {
+        "id": "28aa5b28.04eef4",
+        "type": "inject",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "Basement Room",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"entity_id\":\"binary_sensor.downstairs_door_contact\"}",
+        "payloadType": "json",
+        "x": 170,
+        "y": 560,
+        "wires": [
+            [
+                "76edc07f.d3f92"
+            ]
+        ]
+    },
+    {
+        "id": "76edc07f.d3f92",
+        "type": "http request",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "http://192.168.1.199:3142/door_messages/get_message",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 830,
+        "y": 540,
+        "wires": [
+            [
+                "c54ff5bc.d109f8",
+                "16a143e1.a6e88c"
+            ]
+        ]
+    },
+    {
+        "id": "c54ff5bc.d109f8",
+        "type": "debug",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "b2ad14dc.d028a8",
+        "type": "catch",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "",
+        "scope": [
+            "76edc07f.d3f92"
+        ],
+        "uncaught": false,
+        "x": 550,
+        "y": 660,
+        "wires": [
+            [
+                "2dba7cd3.96a5c4"
+            ]
+        ]
+    },
+    {
+        "id": "2dba7cd3.96a5c4",
+        "type": "template",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\"message\": \"I wish I had a brain\"}",
+        "output": "json",
+        "x": 820,
+        "y": 660,
+        "wires": [
+            [
+                "4fe4ad96.7fa1b4"
+            ]
+        ]
+    },
+    {
+        "id": "9627dca2.cd282",
+        "type": "api-call-service",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "Downstairs Door Opened",
+        "server": "6fd61e46.8c13a",
+        "version": 1,
+        "debugenabled": true,
+        "service_domain": "tts",
+        "service": "google_translate_say",
+        "entityId": "{{payload.speaker_id}}",
+        "data": "{\"message\":\"{{payload.message}}\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1310,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ad24108f.d1a27",
+        "type": "inject",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "Nathan's Door",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"entity_id\":\"binary_sensor.nathan_s_door_contact\"}",
+        "payloadType": "json",
+        "x": 170,
+        "y": 620,
+        "wires": [
+            [
+                "76edc07f.d3f92"
+            ]
+        ]
+    },
+    {
+        "id": "d264925a.81c22",
+        "type": "api-call-service",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "",
+        "server": "6fd61e46.8c13a",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.hallway_2",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 750,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "84fbc5e0.bb0b88",
+        "type": "inject",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "Random",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 270,
+        "y": 740,
+        "wires": [
+            [
+                "e6c0c14c.92793"
+            ]
+        ]
+    },
+    {
+        "id": "e6c0c14c.92793",
+        "type": "function",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "",
+        "func": "function getRandomInt(max) {\n  return Math.floor(Math.random() * max);\n}\nr = getRandomInt(255);\ng = getRandomInt(255);\nb = getRandomInt(255);\n\nmsg.payload = {\n    \"data\": {\n        \"transition\":\"10\",\n        \"rgb_color\":[r,g,b]\n    }\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 460,
+        "y": 740,
+        "wires": [
+            [
+                "d264925a.81c22"
+            ]
+        ]
+    },
+    {
+        "id": "a92b1603.0abaa8",
+        "type": "ha-get-entities",
+        "z": "17f2f2a0.20eded",
+        "server": "6fd61e46.8c13a",
+        "name": "query",
+        "rules": [
+            {
+                "property": "attributes.rgb_color.0",
+                "logic": "gte",
+                "value": "0",
+                "valueType": "num"
+            }
+        ],
+        "output_type": "array",
+        "output_empty_results": true,
+        "output_location_type": "msg",
+        "output_location": "payload",
+        "output_results_count": 1,
+        "x": 570,
+        "y": 180,
+        "wires": [
+            [
+                "5cc57924.9a3b38"
+            ]
+        ]
+    },
+    {
+        "id": "1a68ed4a.484433",
+        "type": "inject",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"interval\": 10}",
+        "payloadType": "json",
+        "x": 170,
+        "y": 360,
+        "wires": [
+            [
+                "d0a9360d.c578d8"
+            ]
+        ]
+    },
+    {
+        "id": "b813e016.e8721",
+        "type": "debug",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "5cc57924.9a3b38",
+        "type": "split",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 630,
+        "y": 320,
+        "wires": [
+            [
+                "9ff248fb.6bfed8"
+            ]
+        ]
+    },
+    {
+        "id": "9ff248fb.6bfed8",
+        "type": "function",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "func": "\nfunction getColor() {\n  position = Math.floor(Math.random() * 255);\n  if(position < 85) {\n    return [255 - position * 3, 0, position * 3]\n  } else if (position < 170) {\n    position = position - 85;\n    return [0, position * 3, 255 - position * 3]\n  } else {\n    position = position - 170;\n    return [position * 3, 255 - position * 3, 0]\n  }\n    \n}\n\nmsg.payload = {\n    \"entity_id\": msg.payload.entity_id,\n    \"data\": {\n        \"transition\":\"10\",\n        \"rgb_color\": getColor()\n    }\n};\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 740,
+        "y": 260,
+        "wires": [
+            [
+                "41cbb070.9a494",
+                "b813e016.e8721"
+            ]
+        ]
+    },
+    {
+        "id": "41cbb070.9a494",
+        "type": "api-call-service",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "server": "6fd61e46.8c13a",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "{{payload.entity_id}}",
+        "data": "",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 770,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f3226cbf.72cdc",
+        "type": "looptimer-advanced",
+        "z": "17f2f2a0.20eded",
+        "duration": "10",
+        "units": "Second",
+        "maxloops": "500",
+        "maxtimeout": "5",
+        "maxtimeoutunits": "Hour",
+        "name": "",
+        "x": 420,
+        "y": 300,
+        "wires": [
+            [
+                "a92b1603.0abaa8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b5e7e0d8.0c068",
+        "type": "inject",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "STOP",
+        "payloadType": "str",
+        "x": 530,
+        "y": 440,
+        "wires": [
+            [
+                "f3226cbf.72cdc"
+            ]
+        ]
+    },
+    {
+        "id": "6e1abcb7.6facc4",
+        "type": "ha-get-entities",
+        "z": "17f2f2a0.20eded",
+        "server": "6fd61e46.8c13a",
+        "name": "query",
+        "rules": [
+            {
+                "property": "attributes.supported_features",
+                "logic": "is",
+                "value": "51",
+                "valueType": "num"
+            }
+        ],
+        "output_type": "array",
+        "output_empty_results": true,
+        "output_location_type": "msg",
+        "output_location": "payload",
+        "output_results_count": 1,
+        "x": 610,
+        "y": 580,
+        "wires": [
+            [
+                "39dab4a5.9fc56c"
+            ]
+        ]
+    },
+    {
+        "id": "ad14a33b.c0761",
+        "type": "inject",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 500,
+        "y": 680,
+        "wires": [
+            [
+                "6e1abcb7.6facc4"
+            ]
+        ]
+    },
+    {
+        "id": "39dab4a5.9fc56c",
+        "type": "debug",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "ee80dbfd.cfadd8",
+        "type": "ha-get-entities",
+        "z": "8615eda2.13049",
+        "server": "6fd61e46.8c13a",
+        "name": "query",
+        "rules": [
+            {
+                "property": "attributes.supported_features",
+                "logic": "is",
+                "value": "51",
+                "valueType": "num"
+            }
+        ],
+        "output_type": "array",
+        "output_empty_results": true,
+        "output_location_type": "msg",
+        "output_location": "payload",
+        "output_results_count": 1,
+        "x": 370,
+        "y": 380,
+        "wires": [
+            [
+                "a60f7d7a.cc547"
+            ]
+        ]
+    },
+    {
+        "id": "a60f7d7a.cc547",
+        "type": "http response",
+        "z": "8615eda2.13049",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 580,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "50643f82.99357",
+        "type": "http in",
+        "z": "8615eda2.13049",
+        "name": "rgb_lights",
+        "url": "rgb_lights",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 380,
+        "wires": [
+            [
+                "ee80dbfd.cfadd8"
+            ]
+        ]
+    },
+    {
+        "id": "3765aed9.2ba102",
+        "type": "function",
+        "z": "8615eda2.13049",
+        "name": "",
+        "func": "msg.payload = {\n    \"entity_id\": msg.payload.entity_id,\n    \"data\": {\n        \"transition\":\"10\",\n        \"rgb_color\": [msg.payload.r, msg.payload.g, msg.payload.b]\n    }\n};\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 500,
+        "y": 540,
+        "wires": [
+            [
+                "524546da.538108"
+            ]
+        ]
+    },
+    {
+        "id": "524546da.538108",
+        "type": "api-call-service",
+        "z": "8615eda2.13049",
+        "name": "",
+        "server": "6fd61e46.8c13a",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "{{payload.entity_id}}",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 790,
+        "y": 560,
+        "wires": [
+            [
+                "8dc8b7ad.71c8f8"
+            ]
+        ]
+    },
+    {
+        "id": "8dc8b7ad.71c8f8",
+        "type": "http response",
+        "z": "8615eda2.13049",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1000,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "52bf71b0.0946d",
+        "type": "http in",
+        "z": "8615eda2.13049",
+        "name": "(POST)rgb_light",
+        "url": "rgb_light",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 520,
+        "wires": [
+            [
+                "3765aed9.2ba102",
+                "8c179e6f.57958"
+            ]
+        ]
+    },
+    {
+        "id": "aab976e1.87d8e8",
+        "type": "split",
+        "z": "8615eda2.13049",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 270,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8c179e6f.57958",
+        "type": "debug",
+        "z": "8615eda2.13049",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "59f70aa.f75c9f4",
+        "type": "catch",
+        "z": "8615eda2.13049",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 420,
+        "y": 800,
+        "wires": [
+            [
+                "baef181e.19d5b8"
+            ]
+        ]
+    },
+    {
+        "id": "baef181e.19d5b8",
+        "type": "http response",
+        "z": "8615eda2.13049",
+        "name": "",
+        "statusCode": "500",
+        "headers": {},
+        "x": 670,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "16a143e1.a6e88c",
+        "type": "switch",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "Cooldown?",
+        "property": "payload.message",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "__COOLDOWN__",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "__COOLDOWN__",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1050,
+        "y": 720,
+        "wires": [
+            [
+                "9627dca2.cd282"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "dd2ec1d.223294",
+        "type": "debug",
+        "z": "8615eda2.13049",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "d856805f.476f4",
+        "type": "ui_colour_picker",
+        "z": "ac03e1c4.f5e5b",
+        "name": "",
+        "label": "",
+        "group": "acd4f921.929998",
+        "format": "hex",
+        "outformat": "string",
+        "showSwatch": true,
+        "showPicker": false,
+        "showValue": false,
+        "showHue": false,
+        "showAlpha": false,
+        "showLightness": true,
+        "square": "false",
+        "dynOutput": "false",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 330,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7b0e2d03.9dd6b4",
+        "type": "ui_audio",
+        "z": "ac03e1c4.f5e5b",
+        "name": "Say it",
+        "group": "acd4f921.929998",
+        "voice": "Google UK English Female",
+        "always": "",
+        "x": 400,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "dae14ae2.d33778",
+        "type": "ui_button",
+        "z": "ac03e1c4.f5e5b",
+        "name": "",
+        "group": "acd4f921.929998",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "button",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "You clicked the button",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 250,
+        "y": 280,
+        "wires": [
+            [
+                "7b0e2d03.9dd6b4"
+            ]
+        ]
+    },
+    {
+        "id": "870bfde2.bf64f",
+        "type": "http in",
+        "z": "17f2f2a0.20eded",
+        "name": "randomize_lights",
+        "url": "randomize_lights",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 220,
+        "wires": [
+            [
+                "d0a9360d.c578d8",
+                "d5474f5b.6f23a",
+                "23841f6d.72eb4"
+            ]
+        ]
+    },
+    {
+        "id": "d0a9360d.c578d8",
+        "type": "function",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "func": "var interval = parseInt(msg.payload.interval);\nreturn {'payload': 'start', 'loop': { 'duration': interval}};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 190,
+        "y": 300,
+        "wires": [
+            [
+                "f3226cbf.72cdc"
+            ]
+        ]
+    },
+    {
+        "id": "d5474f5b.6f23a",
+        "type": "http response",
+        "z": "17f2f2a0.20eded",
+        "name": "Response OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 400,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "23841f6d.72eb4",
+        "type": "debug",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 170,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "d777a7ea.226da8",
+        "type": "inject",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "START",
+        "payloadType": "str",
+        "x": 370,
+        "y": 220,
+        "wires": [
+            [
+                "f3226cbf.72cdc"
+            ]
+        ]
+    },
+    {
+        "id": "c9567458.82dc48",
+        "type": "mqtt in",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "topic": "homeassistant.switches.sengled1",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "81e04573.9be528",
+        "x": 190,
+        "y": 700,
+        "wires": [
+            [
+                "b04019fc.14d7c8"
+            ]
+        ]
+    },
+    {
+        "id": "f026850a.916ff8",
+        "type": "debug",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1190,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "b04019fc.14d7c8",
+        "type": "switch",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "property": "payload.status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 210,
+        "y": 620,
+        "wires": [
+            [
+                "f3226cbf.72cdc"
+            ],
+            [
+                "4e72f193.5c002"
+            ]
+        ]
+    },
+    {
+        "id": "4e72f193.5c002",
+        "type": "template",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "STOP",
+        "output": "str",
+        "x": 380,
+        "y": 620,
+        "wires": [
+            [
+                "f3226cbf.72cdc"
+            ]
+        ]
+    },
+    {
+        "id": "fb5769d0.5a1058",
+        "type": "debug",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "2fbf835c.cb698c",
+        "type": "debug",
+        "z": "d9dc8ab8.ac03d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 210,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "eae05e58.bdd42",
+        "type": "mqtt in",
+        "z": "8615eda2.13049",
+        "name": "",
+        "topic": "python.object_detection",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "81e04573.9be528",
+        "x": 220,
+        "y": 60,
+        "wires": [
+            [
+                "bdb2f334.e6af3",
+                "62767fbb.77ca5"
+            ]
+        ]
+    },
+    {
+        "id": "bdb2f334.e6af3",
+        "type": "debug",
+        "z": "8615eda2.13049",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "62767fbb.77ca5",
+        "type": "api-call-service",
+        "z": "8615eda2.13049",
+        "name": "Say on speaker",
+        "server": "6fd61e46.8c13a",
+        "version": 1,
+        "debugenabled": true,
+        "service_domain": "tts",
+        "service": "google_translate_say",
+        "entityId": "media_player.basement_speaker",
+        "data": "{\"message\":\"Cat has breached security\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 760,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f3a5ffc.157f8",
+        "type": "http in",
+        "z": "17f2f2a0.20eded",
+        "name": "stop_random_lights",
+        "url": "stop_random_lights",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 420,
+        "wires": [
+            [
+                "d894ee95.bfc77",
+                "41321321.0263dc"
+            ]
+        ]
+    },
+    {
+        "id": "d894ee95.bfc77",
+        "type": "function",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "func": "return {'payload': 'STOP'};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 300,
+        "y": 460,
+        "wires": [
+            [
+                "f3226cbf.72cdc",
+                "e6198d87.7f6d1"
+            ]
+        ]
+    },
+    {
+        "id": "e6198d87.7f6d1",
+        "type": "debug",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "940dba60.c9d628",
+        "type": "inject",
+        "z": "17f2f2a0.20eded",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 480,
+        "wires": [
+            [
+                "d894ee95.bfc77"
+            ]
+        ]
+    },
+    {
+        "id": "41321321.0263dc",
+        "type": "http response",
+        "z": "17f2f2a0.20eded",
+        "name": "Response OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 360,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "32f899b5.839fa6",
+        "type": "inject",
+        "z": "8615eda2.13049",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 440,
+        "y": 20,
+        "wires": [
+            [
+                "62767fbb.77ca5"
+            ]
+        ]
+    },
+    {
+        "id": "21b26352.6d0b4c",
+        "type": "ha-get-entities",
+        "z": "8615eda2.13049",
+        "server": "6fd61e46.8c13a",
+        "name": "query",
+        "rules": [],
+        "output_type": "array",
+        "output_empty_results": true,
+        "output_location_type": "msg",
+        "output_location": "payload",
+        "output_results_count": 1,
+        "x": 370,
+        "y": 440,
+        "wires": [
+            [
+                "e919242d.190738"
+            ]
+        ]
+    },
+    {
+        "id": "e919242d.190738",
+        "type": "http response",
+        "z": "8615eda2.13049",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 580,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "1ffa4daf.82e322",
+        "type": "http in",
+        "z": "8615eda2.13049",
+        "name": "entities",
+        "url": "entities",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 440,
+        "wires": [
+            [
+                "21b26352.6d0b4c"
+            ]
+        ]
+    }
+]

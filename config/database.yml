@@ -50,4 +50,4 @@ test:
 #
 production:
   <<: *default
-  password:  <%= ENV['DB_SCHEMA'].presence || "door_contact_production" %>
+  database:  <%= ENV['DB_SCHEMA'].presence || "door_contact_production" %>
