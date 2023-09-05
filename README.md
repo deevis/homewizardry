@@ -1,24 +1,40 @@
-# README
+# Smart Rooms
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A locally hosted platform to manage the rooms within your smart home. Integrates with HomeAssistant, NodeRed, and MQTT.
 
-Things you may want to cover:
+## Prerequisites
 
-* Ruby version
+- Ruby 3.1.2
+- Rails 7
 
-* System dependencies
 
-* Configuration
+## To build/install locally
 
-* Database creation
+```
+cd myprojects
+git clone https://github.com/deevis/smart_rooms.git
+cd smart_rooms
+bundle install
+rails db:create
+rails db:migrate
+rails s
+```
 
-* Database initialization
 
-* How to run the test suite
+## Deploy docker container
 
-* Services (job queues, cache servers, search engines, etc.)
+### Powershell - arm64 target  (raspberry pi, new macbooks...)
 
-* Deployment instructions
+```
+docker buildx build -f production.Dockerfile --platform linux/arm64 -t smart-rooms-arm64 .
+docker image tag smart-rooms-arm64:latest 192.168.1.199:5000/deevis/smart-rooms-arm64:latest
+docker image push 192.168.1.199:5000/deevis/smart-rooms-arm64:latest
 
-* ...
+```
+
+### Branches
+
+- main
+
+
+
