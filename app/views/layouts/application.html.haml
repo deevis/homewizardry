@@ -18,7 +18,8 @@
   %body
     %nav{class: "flex items-center justify-between flex-wrap bg-teal-500 p-4"}
       %div{class: "flex items-center flex-shrink-0 text-white mr-6"}
-        %span{class: "font-semibold text-3xl tracking-tight"} Smart Rooms
+        %a{href: rooms_path}
+          %span{class: "font-semibold text-3xl tracking-tight"} Smart Rooms
       %button{"data-collapse-toggle"=>"mobile-menu", type:"button", class:"inline-flex justify-center items-center ml-3 text-gray-400 rounded-lg md:hidden hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:text-gray-400 dark:hover:text-white dark:focus:ring-gray-500", "aria-controls"=>"mobile-menu-2", "aria-expanded"=>"false"}
         %svg{class:"fill-current h-3 w-3", viewBox:"0 0 20 20", xmlns:"http://www.w3.org/2000/svg"}
           %title Menu

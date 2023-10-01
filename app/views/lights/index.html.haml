@@ -10,16 +10,19 @@
         %th Room
         %th Entity
         %th Name
+        %th Status
         %th
         %th
 
     %tbody
       - @lights.each do |light|
+        - light_status = light.status(@nrs_rgb_lights) # {state: 'on|off', rgb_color: [r, g, b]}
         %tr{class: "bg-white border-b dark:bg-gray-800 dark:border-gray-700"}
           %td= link_to light.room&.name, light.room
           %td= link_to light.entity_id, light
           %td= light.name
-          %td= render 'lights/color_picker', light: light
+          %td= light_status[:state]
+          %td= render 'lights/color_picker', light: light, hex_color: light_status[:hex_color], show_links: 'false'
           %td= link_to 'Destroy', light, data: { confirm: 'Are you sure?' }, method: :delete
 
 %h3 Unconfigured Lights
@@ -32,7 +35,7 @@
         %th 
 
     %tbody
-      - @rgb_lights.each do |l|
+      - @nrs_rgb_lights.each do |l|
         -next if Light.find_by(entity_id: l['entity_id']).present?
         %tr{class: "bg-white border-b dark:bg-gray-800 dark:border-gray-700"}
           %td= l['entity_id']
@@ -43,3 +46,8 @@
               =f.hidden_field :name, value: l['attributes']['friendly_name']
               =f.collection_select :room_id, Room.all, :id, :name
               =f.submit "Quick Add"
+
+- if params[:debug]
+  %h3 RGB Lights
+  - @nrs_rgb_lights.each do |l|
+    = l.inspect

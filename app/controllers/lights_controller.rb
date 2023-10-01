@@ -6,13 +6,13 @@ class LightsController < ApplicationController
     rgb_hex = params['color']['rgb']
     r, g, b = rgb_hex.match(/^#(..)(..)(..)$/).captures.map(&:hex)
     @light.set_color(r, g, b)
-    redirect_to @light, notice: "Color set"
+    redirect_back fallback_location: lights_path, notice: "#{@light.entity_id} color set to #{rgb_hex}"
   end
 
 
   # GET /lights or /lights.json
   def index
-    @rgb_lights = NodeRedService.get(:rgb_lights)
+    @nrs_rgb_lights = NodeRedService.get(:rgb_lights)
     @lights = Light.joins(:room).order("rooms.name ASC, entity_id ASC")
   end
 
