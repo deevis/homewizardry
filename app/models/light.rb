@@ -35,7 +35,7 @@ class Light < ApplicationRecord
           hex_color = rgb_color.map{|c| c.to_s(16).rjust(2, '0')}.join
           Rails.logger.info "Light[#{self.id}] HEX COLOR: #{hex_color}"
         end
-        config = {state: my_config['state'], rgb_color: rgb_color, hex_color: hex_color}
+        config = {state: my_config['state'], rgb_color: rgb_color, hex_color: hex_color, last_changed: my_config['last_updated']}
         Rails.logger.info "Returning status for Light[#{self.id}:#{self.entity_id}]  #{config}"
         return config
       end
